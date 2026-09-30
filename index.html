@@ -113,6 +113,13 @@
   details { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; }
   summary { cursor: pointer; font-weight: 600; }
   details p { color: var(--muted); margin: 10px 0 0; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 18px; }
+  @media (max-width: 480px) { .shots { grid-template-columns: 1fr; } }
+  .shots figure, figure.diagram { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .shots img { display: block; width: 100%; height: auto; background: #000; }
+  figure.diagram { padding: 12px; margin-bottom: 16px; }
+  figure.diagram img { display: block; width: 100%; height: auto; border-radius: 10px; }
+  figcaption { padding: 10px 14px 12px; font-size: 14px; color: var(--muted); }
   footer { margin-top: 80px; padding: 30px 0 50px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
   footer .row { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
 </style>
@@ -122,7 +129,7 @@
   <nav>
     <a class="brand" href="#"><img src="assets/icon.png" alt="">Himawari</a>
     <div class="links">
-      <a href="#features">Features</a><a href="#music">Music wallpaper</a><a href="#install">Install</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a>
+      <a href="#see">See it</a><a href="#features">Features</a><a href="#how">How it works</a><a href="#install">Install</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a><a href="https://github.com/dhairyab0069/himawari-mac">Source</a>
     </div>
   </nav>
 
@@ -130,9 +137,9 @@
     <img class="icon" src="assets/icon.png" alt="Himawari's icon: a sunflower against a summer sky">
     <h1>Himawari</h1>
     <p class="tagline">A live video wallpaper for macOS that turns into your music: Apple Music's animated album art, retro hi-fi gear that follows the song, and a spinning CD for everything else.</p>
-    <span class="badge">BETA 1.1.1</span><br>
-    <a class="cta" href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.1.1.dmg">⬇︎ Download for Mac</a>
-    <p class="meta">Free · macOS 14.4 or later · Apple silicon and Intel · 6 MB</p>
+    <span class="badge">BETA 1.2</span><br>
+    <a class="cta" href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.2.dmg">⬇︎ Download for Mac</a>
+    <p class="meta">Free and open source · macOS 14.4 or later · Apple silicon and Intel · 3 MB</p>
 
     <div class="desk" role="img" aria-label="An illustration of the music wallpaper: a CD deck on the left, a spinning picture CD in the middle and a stereo analyzer with VU meters on the right">
       <div class="rack">
@@ -158,6 +165,17 @@
     <p class="caption">An illustration of the music wallpaper. On your desktop, the gear shows the real song, and you can play it.</p>
   </header>
 
+  <section id="see">
+    <h2>See it</h2>
+    <p class="lead">Recorded on a MacBook. (The first two were recorded before the rename, so the gear still says Hanabi.)</p>
+    <div class="shots">
+      <figure><img src="assets/cd-and-gear.gif" alt="A song's cover printed on a spinning CD between the CD deck and the stereo analyzer" loading="lazy"><figcaption>No animated cover: the CD, the deck and the analyzer</figcaption></figure>
+      <figure><img src="assets/clock-formats.gif" alt="Right-clicking the desktop clock to change its format" loading="lazy"><figcaption>The desktop clock: right-click for formats and styles</figcaption></figure>
+      <figure><img src="assets/animated-cover.gif" alt="An album's animated cover playing as the wallpaper" loading="lazy"><figcaption>An album's animated cover as the wallpaper</figcaption></figure>
+      <figure><img src="assets/live-wallpaper.gif" alt="A moving video wallpaper with the clock in the corner" loading="lazy"><figcaption>Your own video, with the clock</figcaption></figure>
+    </div>
+  </section>
+
   <section id="features">
     <h2>Your desktop, alive</h2>
     <p class="lead">Himawari sits quietly in the menu bar. Pick a video and it becomes your wallpaper. Press play in Music and the desktop follows the song.</p>
@@ -169,7 +187,7 @@
       <div class="card"><div class="emoji">🎛️</div><h3>It's playable</h3><p>Play, skip and seek from the gear, scrub with the jog wheel or by turning the CD, and set Volume, Bass, Treble, Repeat and Shuffle.</p></div>
       <div class="card"><div class="emoji">🫥</div><h3>Click to hide files</h3><p>Click an empty spot on the desktop to see just the wallpaper, and click again to bring your files back. Or press <kbd>⌃⌥⌘D</kbd>.</p></div>
       <div class="card"><div class="emoji">🔒</div><h3>Moving lock screen</h3><p>Optional: your video on the lock screen and as the screen saver, converted to Apple's own Aerial format. Apple's originals are kept.</p></div>
-      <div class="card"><div class="emoji">🕰️</div><h3>Desktop Shell (optional)</h3><p>A see-through desktop clock with five time formats, iOS-style desktop folders, widgets, an XP-style taskbar, and hotkeys.</p></div>
+      <div class="card"><div class="emoji">🕰️</div><h3>A desktop clock</h3><p>A big see-through clock that ticks with the system clock and adapts its ink to the wallpaper behind it. Click it for 24-hour, Swatch .beats, French decimal time or words.</p></div>
     </div>
   </section>
 
@@ -184,15 +202,22 @@
     </div>
   </section>
 
+  <section id="how">
+    <h2>How it works</h2>
+    <p class="lead">Himawari is one menu-bar app plus a tiny clock helper. Everything happens on your Mac; the only things it fetches are album covers from Apple.</p>
+    <figure class="diagram"><img src="assets/architecture.svg" alt="Music, Apple's catalog, a Core Audio tap and the power state feed Himawari's modules; the WallpaperManager draws the wallpaper windows and answers the clock; the gear's click catchers send commands back to Music"><figcaption>What talks to what. Clicks on the gear and the CD become Music commands (dashed).</figcaption></figure>
+    <figure class="diagram"><img src="assets/layers.svg" alt="Window layers from front to back: your apps; the clock and click catchers; Finder's icons; Himawari's wallpaper windows; the desktop picture"><figcaption>The window layers: the wallpaper sits under your icons, and only the controls take clicks.</figcaption></figure>
+  </section>
+
   <section id="install">
     <h2>Install</h2>
     <ol class="steps">
-      <li><a href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.1.1.dmg">Download the DMG</a> and open it.</li>
+      <li><a href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.2.dmg">Download the DMG</a> and open it.</li>
       <li>Drag <b>Himawari</b> onto <b>Applications</b>, then open it from Applications.</li>
       <li>The first time, macOS may say it can't check Himawari for malicious software, because it isn't notarized (that needs a paid Apple Developer ID). Right-click Himawari ▸ <b>Open</b> ▸ <b>Open</b>, or go to <b>System Settings ▸ Privacy &amp; Security</b> and click <b>Open Anyway</b>.</li>
       <li>Click the sunflower in the menu bar, choose <b>Choose Video…</b>, and pick a video.</li>
     </ol>
-    <p class="meta" style="text-align:left">To uninstall, remove the Desktop Shell first if you installed it (Himawari menu ▸ Desktop Shell), quit Himawari, and move it to the Trash.</p>
+    <p class="meta" style="text-align:left">To uninstall, quit Himawari and move it to the Trash.</p>
 
     <h3 style="margin-top:34px">Permissions it asks for</h3>
     <div class="table-wrap"><table>
@@ -222,7 +247,8 @@
     <details><summary>Does it work with Spotify?</summary><p>Not yet. The music wallpaper follows Apple's Music app; your own video wallpaper works whatever you listen to.</p></details>
     <details><summary>Which video formats work?</summary><p>Anything macOS plays: <code>.mp4</code> and <code>.mov</code> (H.264 or HEVC). <code>.webm</code> doesn't play; convert it with <code>ffmpeg -i in.webm -c:v h264_videotoolbox -b:v 8M -an out.mp4</code>.</p></details>
     <details><summary>What if Apple changes something?</summary><p>Two parts use undocumented Apple behavior: reading the system's Now Playing state and finding animated covers on Apple Music's public pages. If either stops working after a macOS update, Himawari falls back (to AppleScript, and to the CD).</p></details>
-    <details><summary>Is it open source?</summary><p>Not yet. The source is private for now; this page and the downloads are public.</p></details>
+    <details><summary>Is it open source?</summary><p>Yes: the code is on GitHub at <a href="https://github.com/dhairyab0069/himawari-mac">dhairyab0069/himawari-mac</a>, with build instructions. Issues and suggestions are welcome.</p></details>
+    <details><summary>What happened to the XP taskbar and desktop folders?</summary><p>They're now their own project, <a href="https://github.com/dhairyab0069/desktop-shell-mac">Desktop Shell</a>: an XP-style taskbar and Start menu, iOS-style desktop folders, widgets and hotkeys. Himawari is just the wallpaper and its clock, and the two work well together.</p></details>
   </section>
 
   <section id="credits">
@@ -237,7 +263,7 @@
   <footer>
     <div class="row">
       <span>Himawari (向日葵, "sunflower") · made by <a href="https://dhairyab0069.github.io/">Dhairya Bhatia</a></span>
-      <span><a href="https://github.com/dhairyab0069/himawari-io/releases">All releases</a> · Not affiliated with Apple</span>
+      <span><a href="https://github.com/dhairyab0069/himawari-mac">Source</a> · <a href="https://github.com/dhairyab0069/himawari-io/releases">All releases</a> · <a href="https://github.com/dhairyab0069/desktop-shell-mac">Desktop Shell</a> · Not affiliated with Apple</span>
     </div>
   </footer>
 </div>

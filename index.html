@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Himawari — a live wallpaper that turns into your music</title>
+<meta name="description" content="Himawari is a live video wallpaper for macOS. While Apple Music plays, the album's animated cover becomes your desktop, with retro hi-fi gear that follows the song, or a spinning CD for everything else.">
+<meta property="og:title" content="Himawari">
+<meta property="og:description" content="A live video wallpaper for macOS that turns into your music.">
+<meta property="og:image" content="https://dhairyab0069.github.io/himawari-io/assets/icon.png">
+<link rel="icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbf7ee; --panel: #ffffff; --ink: #1d1a14; --muted: #6b6356; --line: #e8e0cf;
+    --sun: #f2a900; --sun-deep: #c77d00; --sky: #3d7fd9; --vfd: #5ff0ff; --amber: #ffb84d;
+    --metal-1: #3a3d44; --metal-2: #1c1e23; --shadow: 0 20px 50px rgba(60, 40, 0, .12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #111214; --panel: #1a1c20; --ink: #f3efe6; --muted: #a39c8f; --line: #2b2e34;
+            --sun: #ffc233; --sun-deep: #ffb000; --sky: #7fb2ff; --shadow: 0 20px 50px rgba(0, 0, 0, .45); }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.6 Inter, system-ui, sans-serif; }
+  a { color: var(--sky); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  nav .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; text-decoration: none; color: var(--ink); }
+  nav .brand img { width: 30px; height: 30px; }
+  nav .links { display: flex; gap: 20px; font-size: 14px; }
+  nav .links a { color: var(--muted); text-decoration: none; }
+  nav .links a:hover { color: var(--ink); }
+  @media (max-width: 640px) { nav .links { display: none; } }
+
+  header.hero { text-align: center; padding: 40px 0 10px; }
+  .hero img.icon { width: 112px; height: 112px; filter: drop-shadow(0 12px 24px rgba(242, 169, 0, .35)); }
+  h1 { font-family: Fraunces, Georgia, serif; font-weight: 800; font-size: clamp(44px, 8vw, 76px); line-height: 1; margin: 18px 0 12px; letter-spacing: -.02em; }
+  .tagline { font-size: clamp(18px, 2.4vw, 22px); color: var(--muted); max-width: 640px; margin: 0 auto 26px; }
+  .cta { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; border-radius: 999px; background: var(--sun); color: #231a00;
+         font-weight: 600; text-decoration: none; box-shadow: 0 10px 26px rgba(242, 169, 0, .35); transition: transform .15s; }
+  .cta:hover { transform: translateY(-2px); }
+  .meta { margin-top: 12px; font-size: 14px; color: var(--muted); }
+  .badge { display: inline-block; font: 600 11px/1 "JetBrains Mono", monospace; letter-spacing: .08em; padding: 5px 8px; border-radius: 6px;
+           background: color-mix(in srgb, var(--sun) 18%, transparent); color: var(--sun-deep); margin-bottom: 14px; }
+
+  /* The desk: a drawing of the music wallpaper (deck, CD, analyzer) */
+  .desk { margin: 44px auto 0; display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 18px; align-items: center;
+          background: radial-gradient(ellipse at center, #2a2320 0%, #121012 70%); border-radius: 22px; padding: 26px; box-shadow: var(--shadow); }
+  @media (max-width: 760px) { .desk { grid-template-columns: 1fr; } .desk .rack.right { display: none; } }
+  .rack { background: linear-gradient(180deg, var(--metal-1), var(--metal-2)); border: 1px solid #000; border-radius: 10px; padding: 14px;
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.08); color: #d7d7d7; }
+  .rack .label { font: 600 11px/1.2 Inter, sans-serif; letter-spacing: .28em; }
+  .rack .model { font: 500 8px/1.2 Inter, sans-serif; letter-spacing: .2em; opacity: .55; margin-bottom: 10px; }
+  .vfd { background: #06161a; border-radius: 8px; padding: 10px 12px; font-family: "JetBrains Mono", monospace; color: var(--vfd);
+         text-shadow: 0 0 6px rgba(95, 240, 255, .7); border: 1px solid #000; }
+  .vfd .ind { font-size: 8px; letter-spacing: .1em; display: flex; gap: 8px; }
+  .vfd .ind span { opacity: .18; } .vfd .ind span.on { opacity: 1; }
+  .vfd .time { font-size: 30px; line-height: 1.1; margin: 4px 0; }
+  .vfd .ladder { display: grid; grid-template-columns: repeat(24, 1fr); gap: 2px; margin: 6px 0; }
+  .vfd .ladder i { height: 4px; background: var(--vfd); opacity: .14; }
+  .vfd .ladder i.on { opacity: 1; box-shadow: 0 0 4px var(--vfd); }
+  .vfd .song { font-size: 11px; font-weight: 600; } .vfd .artist { font-size: 9px; opacity: .7; }
+  .transport { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; margin-top: 12px; }
+  .transport b { height: 20px; border-radius: 4px; background: linear-gradient(#4a4d55, #2a2c31); border: 1px solid #000; }
+  .jog { width: 70px; height: 70px; border-radius: 50%; margin: 14px auto 0; position: relative;
+         background: repeating-conic-gradient(#555 0 2deg, #222 2deg 4deg); animation: spin 5s linear infinite; }
+  .jog::after { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: radial-gradient(circle at 70% 35%, #1a1a1a 0 6px, transparent 7px), linear-gradient(135deg, #4b4f57, #2b2e33); }
+  .cd { aspect-ratio: 1; border-radius: 50%; position: relative; animation: spin 7s linear infinite; box-shadow: 0 20px 40px rgba(0,0,0,.6);
+        background: conic-gradient(from 20deg, #ff7a59, #ffc233, #6ad0a8, #3d7fd9, #a36bff, #ff5fa2, #ff7a59); }
+  .cd::before { content: ""; position: absolute; inset: 0; border-radius: 50%;
+                background: repeating-radial-gradient(circle, rgba(255,255,255,.06) 0 1px, transparent 1px 4px),
+                            conic-gradient(from 0deg, transparent 0 20%, rgba(255,255,255,.35) 25%, transparent 32% 70%, rgba(255,255,255,.25) 75%, transparent 82%); mix-blend-mode: screen; }
+  .cd::after { content: ""; position: absolute; inset: 39%; border-radius: 50%;
+               background: radial-gradient(circle, #121012 0 38%, #d9dde3 40%, #9aa1ab 64%, #e8ebef 72%, #b8bec7 100%); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .cd, .jog, .needle, .bars i { animation: none !important; } }
+  .vu { background: linear-gradient(#f7e7c2, #eed49a); border-radius: 8px; height: 74px; margin-bottom: 8px; position: relative; overflow: hidden; border: 1px solid #000; }
+  .vu::before { content: "VU"; position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); font: 700 11px Inter, sans-serif; color: #3a2a10; }
+  .vu::after { content: ""; position: absolute; left: 10%; right: 10%; top: 14px; height: 60px; border-top: 2px solid rgba(58, 42, 16, .5); border-radius: 50% 50% 0 0; }
+  .needle { position: absolute; left: 50%; bottom: -14px; width: 2px; height: 78px; background: #2a1b0d; transform-origin: bottom center; animation: swing 1.6s ease-in-out infinite alternate; }
+  .vu:nth-child(4) .needle { animation-duration: 1.3s; animation-delay: -.4s; }
+  @keyframes swing { 0% { transform: rotate(-42deg); } 35% { transform: rotate(8deg); } 60% { transform: rotate(-12deg); } 100% { transform: rotate(22deg); } }
+  .bars { display: flex; gap: 4px; align-items: flex-end; height: 50px; background: #06161a; border-radius: 8px; padding: 6px 8px; border: 1px solid #000; }
+  .bars i { flex: 1; background: linear-gradient(to top, var(--vfd) 70%, var(--amber)); box-shadow: 0 0 5px rgba(95,240,255,.5); animation: eq 1.1s ease-in-out infinite alternate; }
+  .bars i:nth-child(2n) { animation-duration: .8s; } .bars i:nth-child(3n) { animation-duration: 1.4s; } .bars i:nth-child(5n) { animation-delay: -.5s; }
+  @keyframes eq { from { height: 12%; } to { height: 95%; } }
+  .knobs { display: flex; justify-content: space-around; margin-top: 12px; }
+  .knobs span { width: 30px; height: 30px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #9a9ea6, #2e3036); border: 1px solid #000; position: relative; }
+  .knobs span::after { content: ""; position: absolute; left: 50%; top: 4px; width: 2px; height: 8px; background: #eee; transform: translateX(-50%); }
+  .knobs span.vol { width: 40px; height: 40px; } .knobs span.vol::after { transform: translateX(-50%) rotate(50deg); transform-origin: 50% 16px; }
+  .caption { text-align: center; color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+
+  section { padding: 70px 0 10px; }
+  h2 { font-family: Fraunces, Georgia, serif; font-size: clamp(30px, 4vw, 40px); margin: 0 0 8px; letter-spacing: -.01em; }
+  .lead { color: var(--muted); max-width: 700px; margin: 0 0 28px; font-size: 18px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .card h3 { margin: 6px 0 6px; font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .card .emoji { font-size: 26px; }
+  .steps { counter-reset: s; display: grid; gap: 14px; padding: 0; list-style: none; max-width: 760px; }
+  .steps li { counter-increment: s; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px 16px 62px; position: relative; }
+  .steps li::before { content: counter(s); position: absolute; left: 18px; top: 14px; width: 30px; height: 30px; border-radius: 50%; background: var(--sun); color: #231a00; font-weight: 700; display: grid; place-items: center; }
+  code, kbd { font-family: "JetBrains Mono", monospace; font-size: 13px; background: color-mix(in srgb, var(--ink) 8%, transparent); padding: 2px 6px; border-radius: 5px; }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; font-size: 15px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 13px; color: var(--muted); font-weight: 600; }
+  tr:last-child td { border-bottom: 0; }
+  .table-wrap { overflow-x: auto; }
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { color: var(--muted); margin: 10px 0 0; }
+  footer { margin-top: 80px; padding: 30px 0 50px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  footer .row { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#"><img src="assets/icon.png" alt="">Himawari</a>
+    <div class="links">
+      <a href="#features">Features</a><a href="#music">Music wallpaper</a><a href="#install">Install</a><a href="#privacy">Privacy</a><a href="#faq">FAQ</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <img class="icon" src="assets/icon.png" alt="Himawari's icon: a sunflower against a summer sky">
+    <h1>Himawari</h1>
+    <p class="tagline">A live video wallpaper for macOS that turns into your music: Apple Music's animated album art, retro hi-fi gear that follows the song, and a spinning CD for everything else.</p>
+    <span class="badge">BETA 1.1</span><br>
+    <a class="cta" href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.1.dmg">⬇︎ Download for Mac</a>
+    <p class="meta">Free · macOS 14.4 or later · Apple silicon and Intel · 6 MB</p>
+
+    <div class="desk" role="img" aria-label="An illustration of the music wallpaper: a CD deck on the left, a spinning picture CD in the middle and a stereo analyzer with VU meters on the right">
+      <div class="rack">
+        <div class="label">HIMAWARI</div><div class="model">COMPACT DISC PLAYER · HD-2160</div>
+        <div class="vfd">
+          <div class="ind"><span class="on">PLAY</span><span>PAUSE</span><span class="on">REPEAT</span><span>SHUFFLE</span></div>
+          <div class="time" id="t">01:24</div>
+          <div class="ladder" id="ladder"></div>
+          <div class="song">SUMMER SKY</div><div class="artist">YOUR FAVOURITE ARTIST</div>
+        </div>
+        <div class="transport"><b></b><b></b><b></b><b></b><b></b></div>
+        <div class="jog"></div>
+      </div>
+      <div class="cd"></div>
+      <div class="rack right">
+        <div class="label">HIMAWARI</div><div class="model">STEREO LEVEL ANALYZER · SA-10</div>
+        <div class="vu"><div class="needle"></div></div>
+        <div class="vu"><div class="needle"></div></div>
+        <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="knobs"><span title="Bass"></span><span title="Treble"></span><span class="vol" title="Volume"></span></div>
+      </div>
+    </div>
+    <p class="caption">An illustration of the music wallpaper. On your desktop, the gear shows the real song, and you can play it.</p>
+  </header>
+
+  <section id="features">
+    <h2>Your desktop, alive</h2>
+    <p class="lead">Himawari sits quietly in the menu bar. Pick a video and it becomes your wallpaper. Press play in Music and the desktop follows the song.</p>
+    <div class="grid">
+      <div class="card"><div class="emoji">🎞️</div><h3>Live wallpaper</h3><p>Any <code>.mp4</code> or <code>.mov</code> as your wallpaper, filling the screen. It pauses when covered, locked, asleep or on battery, so it's easy on the battery.</p></div>
+      <div class="card"><div class="emoji">🎵</div><h3>Apple Music artwork</h3><p>While a song plays, the album's animated cover becomes the wallpaper, shown whole and never cropped, at up to 2160×2160.</p></div>
+      <div class="card"><div class="emoji">📻</div><h3>Retro hi-fi gear</h3><p>Beside the artwork, a CD deck with a fluorescent display and a stereo analyzer whose VU needles and spectrum move with the actual music.</p></div>
+      <div class="card"><div class="emoji">💿</div><h3>A spinning CD</h3><p>Songs without an animation get their cover printed on a spinning picture disc, with a disc-changer slide between songs.</p></div>
+      <div class="card"><div class="emoji">🎛️</div><h3>It's playable</h3><p>Play, skip and seek from the gear, scrub with the jog wheel or by turning the CD, and set Volume, Bass, Treble, Repeat and Shuffle.</p></div>
+      <div class="card"><div class="emoji">🫥</div><h3>Click to hide files</h3><p>Click an empty spot on the desktop to see just the wallpaper, and click again to bring your files back. Or press <kbd>⌃⌥⌘D</kbd>.</p></div>
+      <div class="card"><div class="emoji">🔒</div><h3>Moving lock screen</h3><p>Optional: your video on the lock screen and as the screen saver, converted to Apple's own Aerial format. Apple's originals are kept.</p></div>
+      <div class="card"><div class="emoji">🕰️</div><h3>Desktop Shell (optional)</h3><p>A see-through desktop clock with five time formats, iOS-style desktop folders, widgets, an XP-style taskbar, and hotkeys.</p></div>
+    </div>
+  </section>
+
+  <section id="music">
+    <h2>How the music wallpaper works</h2>
+    <p class="lead">Turn on <em>Use Apple Music Artwork While Playing</em> in the menu. From then on, every song picks its own look.</p>
+    <div class="grid">
+      <div class="card"><h3>Album has an animated cover</h3><p>The loop fills the middle of the screen, kept below the notch. The bars at the sides become the CD deck and the stereo analyzer.</p></div>
+      <div class="card"><h3>No animated cover</h3><p>The exact cover Music shows is printed on a CD, placed so the center hole lands on a calm spot. Grab the disc and turn it like a record to scrub, with a soft whirr.</p></div>
+      <div class="card"><h3>Changing songs</h3><p>Skipping slides the old disc off to the left and brings the new one in from the right, spinning up as it settles. Going back runs it the other way.</p></div>
+      <div class="card"><h3>Pausing</h3><p>After a short grace period your own wallpaper comes back, so a quick skip doesn't make it flash.</p></div>
+    </div>
+  </section>
+
+  <section id="install">
+    <h2>Install</h2>
+    <ol class="steps">
+      <li><a href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.1.dmg">Download the DMG</a> and open it.</li>
+      <li>Drag <b>Himawari</b> onto <b>Applications</b>, then open it from Applications.</li>
+      <li>The first time, macOS may say it can't check Himawari for malicious software, because it isn't notarized (that needs a paid Apple Developer ID). Right-click Himawari ▸ <b>Open</b> ▸ <b>Open</b>, or go to <b>System Settings ▸ Privacy &amp; Security</b> and click <b>Open Anyway</b>.</li>
+      <li>Click the sunflower in the menu bar, choose <b>Choose Video…</b>, and pick a video.</li>
+    </ol>
+    <p class="meta" style="text-align:left">To uninstall, remove the Desktop Shell first if you installed it (Himawari menu ▸ Desktop Shell), quit Himawari, and move it to the Trash.</p>
+
+    <h3 style="margin-top:34px">Permissions it asks for</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Permission</th><th>Why</th></tr>
+      <tr><td><b>Automation ▸ Music</b></td><td>To read what's playing and the album cover, and to control Music from the gear.</td></tr>
+      <tr><td><b>Automation ▸ Finder</b></td><td>To check whether a desktop click landed on a file (for click to hide files).</td></tr>
+      <tr><td><b>System Audio Recording Only</b></td><td>To measure the music's loudness for the VU meters. Nothing is recorded; decline and the meters animate on their own.</td></tr>
+    </table></div>
+  </section>
+
+  <section id="privacy">
+    <h2>Privacy</h2>
+    <p class="lead">No accounts, no analytics, no telemetry. Himawari uploads nothing about you. It only fetches album artwork from Apple:</p>
+    <div class="table-wrap"><table>
+      <tr><th>Connects to</th><th>When</th><th>For</th></tr>
+      <tr><td><code>itunes.apple.com</code></td><td>A song starts</td><td>Finding the album, to look for its animated cover</td></tr>
+      <tr><td><code>music.apple.com</code></td><td>A song starts</td><td>The animated cover's video address, from the public album page</td></tr>
+      <tr><td><code>*.mzstatic.com</code></td><td>A song starts</td><td>The cover at full resolution, and the animated cover itself</td></tr>
+      <tr><td><code>youtube.com</code></td><td>Only if you turn on the YouTube loop</td><td>Playing the song's music video in YouTube's embedded player</td></tr>
+    </table></div>
+    <p class="meta" style="text-align:left">The audio tap measures loudness and never records or saves sound. Logs stay on your Mac in <code>~/Library/Logs</code>.</p>
+  </section>
+
+  <section id="faq">
+    <h2>Questions</h2>
+    <details><summary>Does it drain my battery?</summary><p>It idles at well under 1% CPU. On battery or in Low Power Mode, Battery Saver streams artwork at 1080p, rests the gear's motion and skips the blurred fill. You can also pause the wallpaper on battery or whenever the desktop is covered.</p></details>
+    <details><summary>Does it work with Spotify?</summary><p>Not yet. The music wallpaper follows Apple's Music app; your own video wallpaper works whatever you listen to.</p></details>
+    <details><summary>Which video formats work?</summary><p>Anything macOS plays: <code>.mp4</code> and <code>.mov</code> (H.264 or HEVC). <code>.webm</code> doesn't play; convert it with <code>ffmpeg -i in.webm -c:v h264_videotoolbox -b:v 8M -an out.mp4</code>.</p></details>
+    <details><summary>What if Apple changes something?</summary><p>Two parts use undocumented Apple behavior: reading the system's Now Playing state and finding animated covers on Apple Music's public pages. If either stops working after a macOS update, Himawari falls back (to AppleScript, and to the CD).</p></details>
+    <details><summary>Is it open source?</summary><p>Not yet. The source is private for now; this page and the downloads are public.</p></details>
+  </section>
+
+  <section id="credits">
+    <h2>Credits</h2>
+    <div class="grid">
+      <div class="card"><h3>Inspired by Hanabi</h3><p><a href="https://github.com/jeffshee/gnome-ext-hanabi">Hanabi for GNOME</a> by Jeff Shee, the live video wallpaper extension for GNOME, was the starting point and gave this project its first name. Himawari is a separate macOS app written from scratch in Swift; none of Hanabi's code is used.</p></div>
+      <div class="card"><h3>Built with AI assistance</h3><p>Himawari was built with Claude Code, Anthropic's AI coding assistant, as a pair programmer. I decided what to build, how it should look and behave, and tested every change on my own Mac. It's a tested personal project, not an audited product.</p></div>
+      <div class="card"><h3>Standing on Apple's shoulders</h3><p>AVFoundation, Core Animation, Core Audio process taps and SwiftUI do the heavy lifting, and Apple Music provides the animated covers. The Now Playing helper follows the approach of <a href="https://github.com/ungive/mediaremote-adapter">mediaremote-adapter</a>.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <span>Himawari (向日葵, "sunflower") · made by <a href="https://dhairyab0069.github.io/">Dhairya Bhatia</a></span>
+      <span><a href="https://github.com/dhairyab0069/himawari-io/releases">All releases</a> · Not affiliated with Apple</span>
+    </div>
+  </footer>
+</div>
+<script>
+  // The deck's display counts along, like the real one.
+  (function () {
+    var ladder = document.getElementById('ladder'), t = document.getElementById('t');
+    for (var i = 0; i < 24; i++) ladder.appendChild(document.createElement('i'));
+    var cells = ladder.children, seconds = 84, length = 213;
+    function tick() {
+      seconds = (seconds + 1) % length;
+      t.textContent = String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0');
+      var lit = Math.round(seconds / length * cells.length);
+      for (var i = 0; i < cells.length; i++) cells[i].className = i < lit ? 'on' : '';
+    }
+    tick();
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) setInterval(tick, 1000);
+  })();
+</script>
+</body>
+</html>

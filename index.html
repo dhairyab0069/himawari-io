@@ -137,8 +137,8 @@
     <img class="icon" src="assets/icon.png" alt="Himawari's icon: a sunflower against a summer sky">
     <h1>Himawari</h1>
     <p class="tagline">A live video wallpaper for macOS that turns into your music: Apple Music's animated album art, retro hi-fi gear that follows the song, and a spinning CD for everything else.</p>
-    <span class="badge">BETA 1.1.4</span><br>
-    <a class="cta" href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.1.4.dmg">⬇︎ Download for Mac</a>
+    <span class="badge">BETA 1.2</span><br>
+    <a class="cta" href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.2.dmg">⬇︎ Download for Mac</a>
     <p class="meta">Free and open source · macOS 14.4 or later · Apple silicon and Intel · 3 MB</p>
 
     <div class="desk" role="img" aria-label="An illustration of the music wallpaper: a CD deck on the left, a spinning picture CD in the middle and a stereo analyzer with VU meters on the right">
@@ -181,7 +181,7 @@
     <p class="lead">Himawari sits quietly in the menu bar. Pick a video and it becomes your wallpaper. Press play in Music and the desktop follows the song.</p>
     <div class="grid">
       <div class="card"><div class="emoji">🎞️</div><h3>Live wallpaper</h3><p>Any <code>.mp4</code> or <code>.mov</code> as your wallpaper, filling the screen. It pauses when covered, locked, asleep or on battery, so it's easy on the battery.</p></div>
-      <div class="card"><div class="emoji">🎵</div><h3>Apple Music artwork</h3><p>While a song plays, the album's animated cover becomes the wallpaper, shown whole and never cropped, at up to 2160×2160.</p></div>
+      <div class="card"><div class="emoji">🎵</div><h3>Any music player</h3><p>Apple Music, Spotify, TIDAL, Amazon Music and Deezer, plus web players and other apps if you turn them on. Albums with an animated cover on Apple Music show it as the wallpaper, shown whole, at up to 2160×2160.</p></div>
       <div class="card"><div class="emoji">📻</div><h3>Retro hi-fi gear</h3><p>Beside the artwork, a CD deck with a fluorescent display and a stereo analyzer whose VU needles and spectrum move with the actual music.</p></div>
       <div class="card"><div class="emoji">💿</div><h3>A spinning CD</h3><p>Songs without an animation get their cover printed on a spinning picture disc, with a disc-changer slide between songs.</p></div>
       <div class="card"><div class="emoji">🎛️</div><h3>It's playable</h3><p>Play, skip and seek from the gear, scrub with the jog wheel or by turning the CD, and set Volume, Bass, Treble, Repeat and Shuffle.</p></div>
@@ -212,7 +212,7 @@
   <section id="install">
     <h2>Install</h2>
     <ol class="steps">
-      <li><a href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.1.4.dmg">Download the DMG</a> and open it.</li>
+      <li><a href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.2.dmg">Download the DMG</a> and open it.</li>
       <li>Drag <b>Himawari</b> onto <b>Applications</b>, then open it from Applications.</li>
       <li>The first time, macOS may say it can't check Himawari for malicious software, because it isn't notarized (that needs a paid Apple Developer ID). Right-click Himawari ▸ <b>Open</b> ▸ <b>Open</b>, or go to <b>System Settings ▸ Privacy &amp; Security</b> and click <b>Open Anyway</b>.</li>
       <li>Click the sunflower in the menu bar, choose <b>Choose Video…</b>, and pick a video.</li>
@@ -244,7 +244,7 @@
   <section id="faq">
     <h2>Questions</h2>
     <details><summary>Does it drain my battery?</summary><p>It idles at well under 1% CPU. On battery or in Low Power Mode, Battery Saver streams artwork at 1080p, rests the gear's motion and skips the blurred fill. You can also pause the wallpaper on battery or whenever the desktop is covered.</p></details>
-    <details><summary>Does it work with Spotify?</summary><p>Not yet. The music wallpaper follows Apple's Music app; your own video wallpaper works whatever you listen to.</p></details>
+    <details><summary>Does it work with Spotify?</summary><p>Yes, since Beta 1.2: Spotify, TIDAL, Amazon Music and Deezer are followed out of the box, and web players (YouTube Music, SoundCloud) and other apps can be turned on in the Players menu. Play/pause, skipping and seeking work with all of them; the volume, equalizer and repeat/shuffle controls need Apple Music.</p></details>
     <details><summary>Which video formats work?</summary><p>Anything macOS plays: <code>.mp4</code> and <code>.mov</code> (H.264 or HEVC). <code>.webm</code> doesn't play; convert it with <code>ffmpeg -i in.webm -c:v h264_videotoolbox -b:v 8M -an out.mp4</code>.</p></details>
     <details><summary>What if Apple changes something?</summary><p>Two parts use undocumented Apple behavior: reading the system's Now Playing state and finding animated covers on Apple Music's public pages. If either stops working after a macOS update, Himawari falls back (to AppleScript, and to the CD).</p></details>
     <details><summary>Is it open source?</summary><p>Yes: the code is on GitHub at <a href="https://github.com/dhairyab0069/himawari-mac">dhairyab0069/himawari-mac</a>, with build instructions. Issues and suggestions are welcome.</p></details>

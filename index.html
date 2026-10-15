@@ -140,8 +140,8 @@
     <img class="icon" src="assets/icon.png" alt="Himawari's icon: a sunflower against a summer sky">
     <h1>Himawari</h1>
     <p class="tagline">A live video wallpaper for macOS that turns into your music: Apple Music's animated album art, retro hi-fi gear that follows the song, and a spinning CD for everything else.</p>
-    <span class="badge">BETA 1.2.1</span><br>
-    <a class="cta" href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.2.1.dmg">⬇︎ Download for Mac</a>
+    <span class="badge">BETA 1.3</span><br>
+    <a class="cta" href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.3.dmg">⬇︎ Download for Mac</a>
     <p class="meta">Free and open source · macOS 14.4 or later · Apple silicon and Intel · 3 MB</p>
 
     <div class="desk" role="img" aria-label="An illustration of the music wallpaper: a CD deck on the left, a spinning picture CD in the middle and a stereo analyzer with VU meters on the right">
@@ -212,7 +212,7 @@
     <div class="table-wrap"><table>
       <tr><th>Player</th><th>Wallpaper, CD and meters</th><th>Play, skip, seek</th><th>Volume</th><th>Repeat, shuffle</th><th>Bass, treble</th></tr>
       <tr><td><b>Apple Music</b></td><td>✓ (and animated covers)</td><td>✓</td><td>✓ its own</td><td>✓</td><td>✓</td></tr>
-      <tr><td><b>Spotify</b></td><td>✓</td><td>✓</td><td>the Mac's <span class="soon">· its own in 1.3</span></td><td><span class="soon">1.3</span></td><td>—</td></tr>
+      <tr><td><b>Spotify</b></td><td>✓</td><td>✓</td><td>✓ its own</td><td>✓</td><td>—</td></tr>
       <tr><td><b>TIDAL, Amazon Music, Deezer</b></td><td>✓</td><td>✓</td><td>the Mac's</td><td>—</td><td>—</td></tr>
       <tr><td><b>Web players</b> (YouTube Music, SoundCloud…)<br><span class="note">off at first: turn on in Players ▸</span></td><td>✓</td><td>✓</td><td>the Mac's</td><td>—</td><td>—</td></tr>
       <tr><td><b>Other apps</b> (VLC, IINA, QuickTime…)<br><span class="note">off at first</span></td><td>✓</td><td>✓</td><td>the Mac's</td><td>—</td><td>—</td></tr>
@@ -221,7 +221,7 @@
   </section>
 
   <section id="next">
-    <span class="badge"><!--NEXT-->Coming in Beta 1.3 · Tuesday, October 13<!--/NEXT--></span>
+    <span class="badge"><!--NEXT-->New in Beta 1.3<!--/NEXT--></span>
     <h2>Playlists on your desktop</h2>
     <p class="lead">Press the deck's ⏏ button (or <kbd>⌃⌥⌘P</kbd>) and the deck opens a disc changer: your playlists as discs to flip through and play.</p>
     <div class="grid">
@@ -242,7 +242,7 @@
   <section id="install">
     <h2>Install</h2>
     <ol class="steps">
-      <li><a href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.2.1.dmg">Download the DMG</a> and open it.</li>
+      <li><a href="https://github.com/dhairyab0069/himawari-io/releases/latest/download/Himawari-1.3.dmg">Download the DMG</a> and open it.</li>
       <li>Drag <b>Himawari</b> onto <b>Applications</b>, then open it from Applications.</li>
       <li>The first time, macOS may say it can't check Himawari for malicious software, because it isn't notarized (that needs a paid Apple Developer ID). Right-click Himawari ▸ <b>Open</b> ▸ <b>Open</b>, or go to <b>System Settings ▸ Privacy &amp; Security</b> and click <b>Open Anyway</b>.</li>
       <li>Click the sunflower in the menu bar, choose <b>Choose Video…</b>, and pick a video.</li>
@@ -274,8 +274,8 @@
   <section id="faq">
     <h2>Questions</h2>
     <details><summary>Does it drain my battery?</summary><p>It idles at well under 1% CPU. On battery or in Low Power Mode, Battery Saver streams artwork at 1080p, rests the gear's motion and skips the blurred fill. You can also pause the wallpaper on battery or whenever the desktop is covered.</p></details>
-    <details><summary>Does it work with Spotify?</summary><p>Yes, since Beta 1.2: Spotify, TIDAL, Amazon Music and Deezer are followed out of the box, and web players (YouTube Music, SoundCloud) and other apps can be turned on in the Players menu. Play/pause, skipping, seeking and volume work with all of them (volume is the Mac's, for players that can't be asked for their own). From Beta 1.3, Spotify also gets its own volume, repeat, shuffle and playlists. Bass and treble need Apple Music's equalizer.</p></details>
-    <details><summary>Does it work with playlists?</summary><p>From Beta 1.3 (Tuesday, October 13): the deck's ⏏ button opens a disc changer with your Apple Music playlists, what's next in the one playing, and Spotify playlists you add by link.</p></details>
+    <details><summary>Does it work with Spotify?</summary><p>Yes, since Beta 1.2: Spotify, TIDAL, Amazon Music and Deezer are followed out of the box, and web players (YouTube Music, SoundCloud) and other apps can be turned on in the Players menu. Play/pause, skipping, seeking and volume work with all of them (volume is the Mac's, for players that can't be asked for their own). Since Beta 1.3, Spotify also gets its own volume, repeat, shuffle and playlists. Bass and treble need Apple Music's equalizer.</p></details>
+    <details><summary>Does it work with playlists?</summary><p>Since Beta 1.3: the deck's ⏏ button opens a disc changer with your Apple Music playlists, what's next in the one playing, and Spotify playlists you add by link.</p></details>
     <details><summary>Which video formats work?</summary><p>Anything macOS plays: <code>.mp4</code> and <code>.mov</code> (H.264 or HEVC). <code>.webm</code> doesn't play; convert it with <code>ffmpeg -i in.webm -c:v h264_videotoolbox -b:v 8M -an out.mp4</code>.</p></details>
     <details><summary>What if Apple changes something?</summary><p>Two parts use undocumented Apple behavior: reading the system's Now Playing state and finding animated covers on Apple Music's public pages. If either stops working after a macOS update, Himawari falls back (to AppleScript, and to the CD).</p></details>
     <details><summary>Is it open source?</summary><p>Yes: the code is on GitHub at <a href="https://github.com/dhairyab0069/himawari-mac">dhairyab0069/himawari-mac</a>, with build instructions. Issues and suggestions are welcome.</p></details>

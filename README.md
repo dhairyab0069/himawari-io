@@ -7,6 +7,9 @@ your music: **[dhairyab0069.github.io/himawari-io](https://dhairyab0069.github.i
 
 - **Download:** the latest DMG is on the [Releases](https://github.com/dhairyab0069/himawari-io/releases/latest) page
   (macOS 14.4 or newer, Apple silicon and Intel). The first time, right-click ▸ Open: it isn't notarized yet.
+- **Updating:** from Beta 1.5.1, Himawari checks this repo's latest release at launch and daily and
+  updates in one click from its menu (*⬆︎ Update to Beta …*). The updater reads the newest release's
+  `Himawari-<version>.dmg`, so every release here must carry one.
 - **Source code:** [dhairyab0069/himawari-mac](https://github.com/dhairyab0069/himawari-mac), with the
   [roadmap](https://github.com/dhairyab0069/himawari-mac/blob/main/ROADMAP.md) and
   [release notes](https://github.com/dhairyab0069/himawari-mac/tree/main/docs/release-notes).

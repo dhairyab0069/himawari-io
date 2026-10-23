@@ -120,6 +120,9 @@
   @media (max-width: 480px) { .shots { grid-template-columns: 1fr; } }
   .shots figure, figure.diagram { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
   .shots img { display: block; width: 100%; height: auto; background: #000; }
+  .shots + .grid, .grid + .shots, .shots + .shots { margin-top: 18px; }
+  h3.sub { margin: 40px 0 14px; font-size: 1.25rem; }
+  .shots figcaption strong { color: var(--ink); font-size: 15px; }
   figure.diagram { padding: 12px; margin-bottom: 16px; }
   figure.diagram img { display: block; width: 100%; height: auto; border-radius: 10px; }
   figcaption { padding: 10px 14px 12px; font-size: 14px; color: var(--muted); }
@@ -202,29 +205,33 @@
     <span class="badge">New in Betas 1.4, 1.4.5 and 1.5</span>
     <h2>Pick an era, or make your own</h2>
     <p class="lead"><em>Himawari menu ▸ Style…</em> opens every look as a live preview. The controls work the same in all of them, and switching keeps the song where it is.</p>
-    <div class="grid">
-      <div class="card"><div class="emoji">🪵</div><h3>1970s Hi-Fi</h3><p>A walnut receiver whose tuning-dial pointer travels through the song, and a record on a turntable whose tonearm moves in as it plays.</p></div>
-      <div class="card"><div class="emoji">📼</div><h3>1980s Cassette Deck</h3><p>A tape deck whose cassette winds reel to reel, a graphic equalizer, and in the middle a cassette in front of its case, the song written on its label.</p></div>
-      <div class="card"><div class="emoji">💿</div><h3>1990s Portable</h3><p>A portable CD player's LCD and rubber buttons, MEGA BASS on its remote, and the CD turning under the clear lid.</p></div>
-      <div class="card"><div class="emoji">🎚️</div><h3>2000s Rack</h3><p>The CD deck and stereo analyzer Himawari started with, in black or champagne gold.</p></div>
-      <div class="card"><div class="emoji">🎧</div><h3>2000s Pocket Player</h3><p>A speaker dock and the player itself, the cover on its screen and a click wheel that scrubs.</p></div>
-      <div class="card"><div class="emoji">🪟</div><h3>Today, Minimal</h3><p>Glass panes, large plain type and a thin waveform, the cover floating on a card: drag the line under it to scrub.</p></div>
-    </div>
     <div class="shots">
-      <figure><img src="assets/boombox.png" alt="A boombox: speaker grilles, a fluorescent display, piano keys, LED meters and a tuning wheel, with a cassette in the middle" loading="lazy"><figcaption>A design file's era: the 1980s Boombox</figcaption></figure>
-      <figure><img src="assets/lyrics.png" alt="Today's glass panels with the line being sung on the display, and big under the cover: the sung words bright, the rest dimmed, the next line below" loading="lazy"><figcaption>Synced lyrics: on the display, and big under the cover as they're sung</figcaption></figure>
-      <figure><img src="assets/styles.png" alt="Six eras of gear side by side" loading="lazy"><figcaption>All six eras</figcaption></figure>
+      <figure><img src="assets/era-hifi.png" alt="A walnut receiver and amplifier with a record on a turntable in the middle" loading="lazy"><figcaption><strong>1970s Hi-Fi</strong><br>A walnut receiver whose dial pointer travels through the song, and a record whose tonearm moves in as it plays.</figcaption></figure>
+      <figure><img src="assets/era-cassette.png" alt="A black tape deck and graphic equalizer with a cassette in front of its open case" loading="lazy"><figcaption><strong>1980s Cassette Deck</strong><br>A tape deck winding reel to reel, a graphic equalizer, and a cassette in front of its case with the song on its label.</figcaption></figure>
+      <figure><img src="assets/era-portable.png" alt="A silver portable CD player face and LCD remote, with the CD turning under a clear lid" loading="lazy"><figcaption><strong>1990s Portable</strong><br>A portable CD player's LCD and rubber buttons, MEGA BASS on its remote, the CD under the clear lid.</figcaption></figure>
+      <figure><img src="assets/era-rack.png" alt="The black CD deck and stereo analyzer with a picture CD" loading="lazy"><figcaption><strong>2000s Rack</strong><br>The CD deck and stereo analyzer Himawari started with, in black or champagne gold.</figcaption></figure>
+      <figure><img src="assets/era-pocket.png" alt="A white speaker dock either side of a pocket player showing the cover, with a click wheel" loading="lazy"><figcaption><strong>2000s Pocket Player</strong><br>A speaker dock, and the player itself: the cover on its screen, a click wheel that scrubs.</figcaption></figure>
+      <figure><img src="assets/era-minimal.png" alt="Dark glass panels with plain type and a waveform, the cover on a floating card" loading="lazy"><figcaption><strong>Today, Minimal</strong><br>Glass panes, large plain type and a thin waveform; the cover floats on a card, and the line under it scrubs.</figcaption></figure>
+    </div>
+    <h3 class="sub">Make your own</h3>
+    <div class="shots">
+      <figure><img src="assets/cyberpunk.png" alt="Neon heads-up-display panels either side of the cover projected as a hologram over a glowing emitter" loading="lazy"><figcaption><strong>Cyberpunk</strong><br>A whole era from a design file: a neon heads-up display, a reactor ring that scrubs, and the cover projected as a hologram. It ships as <em>Cyberpunk ▸ Neon</em>.</figcaption></figure>
+      <figure><img src="assets/boombox.png" alt="A silver boombox with speaker grilles either side of a cassette" loading="lazy"><figcaption><strong>1980s Boombox</strong><br>The other example design: speaker grilles, a fluorescent display, piano keys and a tuning wheel, with a cassette.</figcaption></figure>
+      <figure><img src="assets/guide-0.png" alt="The dark glass panels the guide starts from" loading="lazy"><figcaption><strong>The guide, step 0</strong><br><a href="https://github.com/dhairyab0069/himawari-mac/blob/main/docs/make-your-own.md">Make your own look</a> starts from a copy of <em>Today, Minimal ▸ Dark</em>…</figcaption></figure>
+      <figure><img src="assets/guide-4.png" alt="The finished cyberpunk era built in the guide" loading="lazy"><figcaption><strong>…and step 4</strong><br>…and four small JSON edits later it's an era of your own. Skin and design files reload as you save.</figcaption></figure>
     </div>
     <div class="grid">
-      <div class="card"><div class="emoji">🧩</div><h3>Your own eras</h3><p>A design file stacks blocks on each panel (a display, buttons, a wheel, meters, knobs, speaker grilles, a D-pad…) and picks what plays in the middle. Customise ▸ <em>Make My Own Era…</em> starts you off.</p></div>
-      <div class="card"><div class="emoji">🌃</div><h3>Step by step: Cyberpunk</h3><p><a href="https://github.com/dhairyab0069/himawari-mac/blob/main/docs/make-your-own.md">The guide</a> goes from a copy of a built-in skin to a neon heads-up display with the cover as a hologram. The result ships as <em>Cyberpunk ▸ Neon</em>.</p></div>
+      <div class="card"><div class="emoji">🧩</div><h3>Your own eras</h3><p>A design file stacks blocks on each panel (a display, buttons, a wheel, meters, knobs, speaker grilles, a D-pad…) and picks what plays in the middle: a record, a cassette, a CD, a card, a game cartridge or a hologram. Customise ▸ <em>Make My Own Era…</em> starts you off.</p></div>
       <div class="card"><div class="emoji">🏷️</div><h3>Looks that follow the music</h3><p>Let the genre pick the era (jazz on the walnut hi-fi, hip-hop on the rack, pop on the pocket player), with your own rules, or light the gear in the cover's colours.</p></div>
-      <div class="card"><div class="emoji">🎤</div><h3>Synced lyrics</h3><p><em>Himawari menu ▸ Lyrics:</em> on the display, or on the display and the desktop. Words Earlier and Later fix a song's timing, remembered per song.</p></div>
+      <div class="card"><div class="emoji">🎛️</div><h3>Customise</h3><p>Animation (full, reduced or still), the meters (each era's, or needles, LEDs or a spectrum anywhere), and your own name on the faceplates.</p></div>
     </div>
-    <h3 style="margin-top:34px">From a copy of a skin to your own era</h3>
+    <h3 class="sub">Synced lyrics</h3>
     <div class="shots">
-      <figure><img src="assets/guide-0.png" alt="Today's dark glass panels: the built-in skin the guide starts from" loading="lazy"><figcaption>Start: a copy of <em>Today, Minimal ▸ Dark</em></figcaption></figure>
-      <figure><img src="assets/guide-4.png" alt="The finished cyberpunk era: a framed HUD display, outlined buttons, a reactor ring, LED meters, a spectrum, readouts and segmented knobs, with the cover as a hologram" loading="lazy"><figcaption>Four small JSON edits later: your own Cyberpunk era (<a href="https://github.com/dhairyab0069/himawari-mac/blob/main/docs/make-your-own.md">the guide</a>)</figcaption></figure>
+      <figure><img src="assets/lyrics.png" alt="Dark glass panels with the lyric on the display and big under the cover, the sung words bright" loading="lazy"><figcaption><strong>On the display and the desktop</strong><br>The line being sung takes the album's place on the display, and shows big under the cover, brightening word by word.</figcaption></figure>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="emoji">🎤</div><h3>Where the words come from</h3><p><a href="https://lrclib.net">LRCLIB</a>, matched by title, artist, album and length, or Apple Music's own lyrics. Off until you turn them on in <em>Himawari menu ▸ Lyrics</em>.</p></div>
+      <div class="card"><div class="emoji">⏱️</div><h3>In time</h3><p>The words follow the gear's own clock through seeks, scrubs and pauses. <em>Words Earlier / Later</em> fix a song that runs early or late, remembered per song.</p></div>
     </div>
   </section>
 

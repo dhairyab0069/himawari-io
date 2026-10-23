@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Himawari — a live wallpaper that turns into your music</title>
-<meta name="description" content="Himawari is a live video wallpaper for macOS. While Apple Music plays, the album's animated cover becomes your desktop, with retro hi-fi gear that follows the song, or a spinning CD for everything else.">
+<meta name="description" content="Himawari is a live video wallpaper for macOS. While music plays, the album's animated cover becomes your desktop, with hi-fi gear from any era that follows the song, synced lyrics, and the cover on a record, a cassette, a CD or a hologram for everything else. Make your own looks as small JSON files.">
 <meta property="og:title" content="Himawari">
 <meta property="og:description" content="A live video wallpaper for macOS that turns into your music.">
 <meta property="og:image" content="https://dhairyab0069.github.io/himawari-io/assets/icon.png">
@@ -172,6 +172,8 @@
     <h2>See it</h2>
     <p class="lead">Recorded on a MacBook. (The first two were recorded before the rename, so the gear still says Hanabi.)</p>
     <div class="shots">
+      <figure><img src="assets/cyberpunk.png" alt="Neon heads-up-display panels either side of a song's cover projected as a hologram over a glowing emitter, with the lyric being sung underneath" loading="lazy"><figcaption>Cyberpunk: the cover as a hologram, with synced lyrics</figcaption></figure>
+      <figure><img src="assets/styles.png" alt="Six eras of gear: a walnut receiver with a record, a tape deck with a cassette, a portable CD player, the CD rack, a pocket player on its dock, and today's glass panes with a floating cover" loading="lazy"><figcaption>Six eras, from a 1970s receiver to today's glass</figcaption></figure>
       <figure><img src="assets/cd-and-gear.gif" alt="A song's cover printed on a spinning CD between the CD deck and the stereo analyzer" loading="lazy"><figcaption>No animated cover: the CD, the deck and the analyzer</figcaption></figure>
       <figure><img src="assets/clock-formats.gif" alt="Right-clicking the desktop clock to change its format" loading="lazy"><figcaption>The desktop clock: right-click for formats and styles</figcaption></figure>
       <figure><img src="assets/animated-cover.gif" alt="An album's animated cover playing as the wallpaper" loading="lazy"><figcaption>An album's animated cover as the wallpaper</figcaption></figure>
@@ -185,8 +187,10 @@
     <div class="grid">
       <div class="card"><div class="emoji">🎞️</div><h3>Live wallpaper</h3><p>Any <code>.mp4</code> or <code>.mov</code> as your wallpaper, filling the screen. It pauses when covered, locked, asleep or on battery, so it's easy on the battery.</p></div>
       <div class="card"><div class="emoji">🎵</div><h3>Any music player</h3><p>Apple Music, Spotify, TIDAL, Amazon Music and Deezer, plus web players and other apps if you turn them on. Albums with an animated cover on Apple Music show it as the wallpaper, shown whole, at up to 2160×2160.</p></div>
-      <div class="card"><div class="emoji">📻</div><h3>Retro hi-fi gear</h3><p>Beside the artwork, a CD deck with a fluorescent display and a stereo analyzer whose VU needles and spectrum move with the actual music.</p></div>
-      <div class="card"><div class="emoji">💿</div><h3>A spinning CD</h3><p>Songs without an animation get their cover printed on a spinning picture disc, with a disc-changer slide between songs.</p></div>
+      <div class="card"><div class="emoji">📻</div><h3>Gear from every era</h3><p>Beside the artwork, hi-fi gear whose meters move with the actual music: a 1970s receiver, an 1980s tape deck, a 1990s portable, the 2000s CD rack, a pocket player on its dock, or today's glass panes. Fourteen skins, and looks that follow the genre or the cover's colours.</p></div>
+      <div class="card"><div class="emoji">💿</div><h3>Records, tapes and CDs</h3><p>Songs without an animation get their cover on the era's media: a record whose tonearm moves in with the song, a cassette in front of its case, a picture CD, a floating card, a game cartridge or a hologram.</p></div>
+      <div class="card"><div class="emoji">🎤</div><h3>Synced lyrics</h3><p>The line being sung on the gear's display, and big under the cover with a karaoke sweep. From LRCLIB, or Apple Music's own lyrics, and off until you turn them on.</p></div>
+      <div class="card"><div class="emoji">🎨</div><h3>Make your own</h3><p>Skins are small JSON files (colours, materials, fonts), and a design file lays out a whole new era from blocks. They reload as you save. A step-by-step guide builds a cyberpunk one.</p></div>
       <div class="card"><div class="emoji">🎛️</div><h3>It's playable</h3><p>Play, skip and seek from the gear with any player, scrub with the jog wheel or by turning the CD, and turn the volume. With Apple Music, Bass, Treble, Repeat and Shuffle work too.</p></div>
       <div class="card"><div class="emoji">🫥</div><h3>Click to hide files</h3><p>Click an empty spot on the desktop to see just the wallpaper, and click again to bring your files back. Or press <kbd>⌃⌥⌘D</kbd>.</p></div>
       <div class="card"><div class="emoji">🔒</div><h3>Moving lock screen</h3><p>Optional: your video on the lock screen and as the screen saver, converted to Apple's own Aerial format. Apple's originals are kept.</p></div>
@@ -199,7 +203,7 @@
     <p class="lead">Turn on <em>Music Wallpaper While Playing</em> in the menu. From then on, every song picks its own look, in whichever player you use.</p>
     <div class="grid">
       <div class="card"><h3>Album has an animated cover</h3><p>The loop fills the middle of the screen, kept below the notch. The bars at the sides become the CD deck and the stereo analyzer.</p></div>
-      <div class="card"><h3>No animated cover</h3><p>The exact cover Music shows is printed on a CD, placed so the center hole lands on a calm spot. Grab the disc and turn it like a record to scrub, with a soft whirr.</p></div>
+      <div class="card"><h3>No animated cover</h3><p>The exact cover Music shows goes on the style's media: printed on a CD (placed so the center hole lands on a calm spot), on a record's label, on a cassette's case, on a cartridge. Grab the disc or the tape and turn it to scrub, with a soft whirr.</p></div>
       <div class="card"><h3>Changing songs</h3><p>Skipping slides the old disc off to the left and brings the new one in from the right, spinning up as it settles. Going back runs it the other way.</p></div>
       <div class="card"><h3>Pausing</h3><p>After a short grace period your own wallpaper comes back, so a quick skip doesn't make it flash.</p></div>
       <div class="card"><h3>No cover at all</h3><p>Some players share no cover (a browser on many videos). Those songs get a plain disc label with the title and artist, and a real cover replaces it if one turns up.</p></div>
@@ -220,6 +224,30 @@
     <p class="meta" style="text-align:left">An animated cover shows whatever app plays the song, if the album has one on Apple Music. Controls a player doesn't support are dimmed on the gear.</p>
   </section>
 
+  <section id="styles">
+    <span class="badge">New in Betas 1.4 to 1.5</span>
+    <h2>Pick an era, or make your own</h2>
+    <p class="lead"><em>Himawari menu ▸ Style…</em> opens every look as a live preview. The controls work the same in all of them, and switching keeps the song where it is.</p>
+    <div class="grid">
+      <div class="card"><div class="emoji">🪵</div><h3>1970s Hi-Fi</h3><p>A walnut receiver whose tuning-dial pointer travels through the song, and a record on a turntable whose tonearm moves in as it plays.</p></div>
+      <div class="card"><div class="emoji">📼</div><h3>1980s Cassette Deck</h3><p>A tape deck whose cassette winds reel to reel, a graphic equalizer, and in the middle a cassette in front of its case, the song written on its label.</p></div>
+      <div class="card"><div class="emoji">💿</div><h3>1990s Portable</h3><p>A portable CD player's LCD and rubber buttons, MEGA BASS on its remote, and the CD turning under the clear lid.</p></div>
+      <div class="card"><div class="emoji">🎚️</div><h3>2000s Rack</h3><p>The CD deck and stereo analyzer Himawari started with, in black or champagne gold.</p></div>
+      <div class="card"><div class="emoji">🎧</div><h3>2000s Pocket Player</h3><p>A speaker dock and the player itself, the cover on its screen and a click wheel that scrubs.</p></div>
+      <div class="card"><div class="emoji">🪟</div><h3>Today, Minimal</h3><p>Glass panes, large plain type and a thin waveform, the cover floating on a card: drag the line under it to scrub.</p></div>
+    </div>
+    <div class="shots">
+      <figure><img src="assets/hifi.png" alt="The walnut receiver and amplifier with a record on a turntable, the tonearm on the record, and the lyric underneath" loading="lazy"><figcaption>The 1970s Hi-Fi, with lyrics on the dial and the desktop</figcaption></figure>
+      <figure><img src="assets/boombox.png" alt="A boombox: speaker grilles, a fluorescent display, piano keys, LED meters and a tuning wheel, with a cassette in the middle" loading="lazy"><figcaption>A design file's era: the 1980s Boombox</figcaption></figure>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="emoji">🧩</div><h3>Your own eras</h3><p>A design file stacks blocks on each panel (a display, buttons, a wheel, meters, knobs, speaker grilles, a D-pad…) and picks what plays in the middle. Customise ▸ <em>Make My Own Era…</em> starts you off.</p></div>
+      <div class="card"><div class="emoji">🌃</div><h3>Step by step: Cyberpunk</h3><p><a href="https://github.com/dhairyab0069/himawari-mac/blob/main/docs/make-your-own.md">The guide</a> goes from a copy of a built-in skin to a neon heads-up display with the cover as a hologram. The result ships as <em>Cyberpunk ▸ Neon</em>.</p></div>
+      <div class="card"><div class="emoji">🏷️</div><h3>Looks that follow the music</h3><p>Let the genre pick the era (jazz on the walnut hi-fi, hip-hop on the rack, pop on the pocket player), with your own rules, or light the gear in the cover's colours.</p></div>
+      <div class="card"><div class="emoji">🎤</div><h3>Synced lyrics</h3><p><em>Himawari menu ▸ Lyrics:</em> on the display, or on the display and the desktop. Words Earlier and Later fix a song's timing, remembered per song.</p></div>
+    </div>
+  </section>
+
   <section id="next">
     <span class="badge"><!--NEXT-->New in Beta 1.3<!--/NEXT--></span>
     <h2>Playlists on your desktop</h2>
@@ -234,7 +262,7 @@
 
   <section id="how">
     <h2>How it works</h2>
-    <p class="lead">Himawari is one menu-bar app plus a tiny clock helper. Everything happens on your Mac; the only things it fetches are album covers from Apple.</p>
+    <p class="lead">Himawari is one menu-bar app plus a tiny clock helper. Everything happens on your Mac; the only things it fetches are album covers from Apple (and lyrics, if you turn them on).</p>
     <figure class="diagram"><img src="assets/architecture.svg" alt="Music, Apple's catalog, a Core Audio tap and the power state feed Himawari's modules; the WallpaperManager draws the wallpaper windows and answers the clock; the gear's click catchers send commands back to Music"><figcaption>What talks to what. Clicks on the gear and the CD become Music commands (dashed).</figcaption></figure>
     <figure class="diagram"><img src="assets/layers.svg" alt="Window layers from front to back: your apps; the clock and click catchers; Finder's icons; Himawari's wallpaper windows; the desktop picture"><figcaption>The window layers: the wallpaper sits under your icons, and only the controls take clicks.</figcaption></figure>
   </section>
@@ -260,13 +288,14 @@
 
   <section id="privacy">
     <h2>Privacy</h2>
-    <p class="lead">No accounts, no analytics, no telemetry. Himawari uploads nothing about you. It only fetches album artwork from Apple:</p>
+    <p class="lead">No accounts, no analytics, no telemetry. Himawari uploads nothing about you. It fetches album artwork from Apple, and lyrics only if you turn them on:</p>
     <div class="table-wrap"><table>
       <tr><th>Connects to</th><th>When</th><th>For</th></tr>
       <tr><td><code>itunes.apple.com</code></td><td>A song starts</td><td>Finding the album, to look for its animated cover</td></tr>
       <tr><td><code>music.apple.com</code></td><td>A song starts</td><td>The animated cover's video address, from the public album page</td></tr>
       <tr><td><code>*.mzstatic.com</code></td><td>A song starts</td><td>The cover at full resolution, and the animated cover itself</td></tr>
       <tr><td><code>youtube.com</code></td><td>Only if you turn on the YouTube loop</td><td>Playing the song's music video in YouTube's embedded player</td></tr>
+      <tr><td><code>lrclib.net</code></td><td>Only with Lyrics on, when a song starts</td><td>The song's lyrics: only its title, artist, album and length are sent</td></tr>
     </table></div>
     <p class="meta" style="text-align:left">The audio tap measures loudness and never records or saves sound. Logs stay on your Mac in <code>~/Library/Logs</code>.</p>
   </section>
@@ -276,6 +305,8 @@
     <details><summary>Does it drain my battery?</summary><p>It idles at well under 1% CPU. On battery or in Low Power Mode, Battery Saver streams artwork at 1080p, rests the gear's motion and skips the blurred fill. You can also pause the wallpaper on battery or whenever the desktop is covered.</p></details>
     <details><summary>Does it work with Spotify?</summary><p>Yes, since Beta 1.2: Spotify, TIDAL, Amazon Music and Deezer are followed out of the box, and web players (YouTube Music, SoundCloud) and other apps can be turned on in the Players menu. Play/pause, skipping, seeking and volume work with all of them (volume is the Mac's, for players that can't be asked for their own). Since Beta 1.3, Spotify also gets its own volume, repeat, shuffle and playlists. Bass and treble need Apple Music's equalizer.</p></details>
     <details><summary>Does it work with playlists?</summary><p>Since Beta 1.3: the deck's ⏏ button opens a disc changer with your Apple Music playlists, what's next in the one playing, and Spotify playlists you add by link.</p></details>
+    <details><summary>Can I make my own look?</summary><p>Yes. A skin is a small JSON file of colours, materials, fonts and a few sizes; Customise ▸ <em>Make My Own…</em> copies one for you to edit, and it reloads as you save. A design file goes further and lays out a whole new era from blocks. <a href="https://github.com/dhairyab0069/himawari-mac/blob/main/docs/make-your-own.md">Make your own look</a> walks through one step by step.</p></details>
+    <details><summary>Where do the lyrics come from?</summary><p>From <a href="https://lrclib.net">LRCLIB</a>, a free, open database of time-synced lyrics, matched by title, artist, album and length so a live version doesn't get the studio words. When it has none, Apple Music's own lyrics show a few lines at a time. Lyrics are off until you turn them on.</p></details>
     <details><summary>Which video formats work?</summary><p>Anything macOS plays: <code>.mp4</code> and <code>.mov</code> (H.264 or HEVC). <code>.webm</code> doesn't play; convert it with <code>ffmpeg -i in.webm -c:v h264_videotoolbox -b:v 8M -an out.mp4</code>.</p></details>
     <details><summary>What if Apple changes something?</summary><p>Two parts use undocumented Apple behavior: reading the system's Now Playing state and finding animated covers on Apple Music's public pages. If either stops working after a macOS update, Himawari falls back (to AppleScript, and to the CD).</p></details>
     <details><summary>Is it open source?</summary><p>Yes: the code is on GitHub at <a href="https://github.com/dhairyab0069/himawari-mac">dhairyab0069/himawari-mac</a>, with build instructions. Issues and suggestions are welcome.</p></details>
